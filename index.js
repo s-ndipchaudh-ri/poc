@@ -21,7 +21,6 @@ app.use(function (req, res, next) {
 
 // import all routes
 const Routes = require('./routes')
-console.log("hello")
 app.use(Routes)
 app.listen(5003, function() {
     console.log("App started")
