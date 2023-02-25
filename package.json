@@ -4,6 +4,7 @@
   "description": "A simple POC",
   "main": "index.js",
   "scripts": {
+    "dev": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -15,5 +16,15 @@
   "bugs": {
     "url": "https://github.com/s-ndipchaudh-ri/poc/issues"
   },
-  "homepage": "https://github.com/s-ndipchaudh-ri/poc#readme"
+  "homepage": "https://github.com/s-ndipchaudh-ri/poc#readme",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "nodemon": "^2.0.20",
+    "pg": "^8.9.0",
+    "sequelize": "^6.29.0",
+    "sequelize-cli": "^6.6.0"
+  }
 }
