@@ -1,13 +1,12 @@
+const { cronJob, csvJob } = require('../helpers/cronJobs');
 const { csvReader } = require('../helpers/csvReader');
 const cron = require('node-cron');
-const job = cron.schedule('*/5 * * * * *', () => {
-    csvReader()
-    console.log(new Date());
-  });
+
+
 
 module.exports = {
 
-    getPrice: async (payloadData) => {
+    getPrice: async () => {
         try {
             let result = await csvReader()
             return {
@@ -15,7 +14,6 @@ module.exports = {
             }
             
         } catch (error) {
-            // return "close"
             throw error
 
         }
@@ -23,7 +21,8 @@ module.exports = {
     startCron : async () => {
         try {
             
-            await job.start();
+            csvJob.start()
+
             return {
                 msg : "Cron Job Started!"
             }
@@ -34,7 +33,7 @@ module.exports = {
     stopCron : async () => {
         try {
             
-            await job.stop();
+            csvJob.stop();
             return {
                 msg : "Cron Job Stopped!"
             }

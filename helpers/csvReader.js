@@ -1,5 +1,7 @@
 const fs = require('fs');
 const csv = require('csv-parser');
+const price = require('../models/price');
+const models = require('../models');
 
 const csvReader = async (payloadData) => {
     try {
@@ -9,15 +11,20 @@ const csvReader = async (payloadData) => {
             for await (const chunk of stream) {
               data.push(chunk)
             }
-          console.log(data)
+            let priceDel = await models.price.destroy({
+                where: {},
+                truncate: true
+              })
+            let prices = await models.price.bulkCreate(data)
             
+
             return {
                 data
             }
 
         
     } catch (error) {
-        return { err };
+        return { error };
 
     }
 }

@@ -2,6 +2,10 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const cors = require('cors')
 
+
+const WebSocket = require('ws');
+const wss = new WebSocket.Server({ port: 8080 });
+
 var cookieParser = require("cookie-parser");
 // declare a new express app
 const app = express()
@@ -19,9 +23,21 @@ app.use(function (req, res, next) {
 	next();
 });
 
+
 // import all routes
-const Routes = require('./routes')
+const Routes = require('./routes');
+const models = require('./models');
 app.use(Routes)
+
+wss.on('connection', async  (ws) => {
+  console.log('client connected');
+
+  setInterval(async() => {
+    const csvData = await models.price.findAll({});
+    ws.send(JSON.stringify(csvData));
+  }, 1000);
+})
+
 app.listen(5003, function() {
     console.log("App started")
 });

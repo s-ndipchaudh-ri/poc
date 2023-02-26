@@ -1,4 +1,6 @@
-group,var
-one,10
-two,20
-two,20
+group,value
+1,2
+1,50
+2,10
+2,90
+1,50
