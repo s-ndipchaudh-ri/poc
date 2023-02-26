@@ -40,7 +40,7 @@ wss.on('connection', async  (ws) => {
     let newData = await reformateData(csvData)
     ws.send(JSON.stringify(newData));
 
-  }, 10000);
+  }, 1000);
 })
 
 app.listen(5003, function() {

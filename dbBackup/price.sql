@@ -8,12 +8,15 @@ CREATE SEQUENCE public.price_id_seq
     CACHE 1;
 
 
+
 CREATE TABLE public.price
 (
     id integer NOT NULL DEFAULT nextval('price_id_seq'::regclass),
-    value integer NOT NULL,
     "createdAt" time with time zone,
     "updatedAt" time with time zone,
     "group" integer NOT NULL,
+    var integer,
+    value character varying(10) COLLATE pg_catalog."default",
     CONSTRAINT price_pkey PRIMARY KEY (id)
 )
+
