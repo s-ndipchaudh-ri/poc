@@ -12,6 +12,9 @@ module.exports = function (Sequelize, sequelize, DataTypes){
         value : {
             type :  DataTypes.INTEGER,
         },
+        var : {
+            type :  DataTypes.INTEGER,
+        },
         createdAt : {
             type: DataTypes.DATE,
 			defaultValue: DataTypes.NOW(0)

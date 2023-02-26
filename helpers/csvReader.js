@@ -15,6 +15,7 @@ const csvReader = async (payloadData) => {
                 where: {},
                 truncate: true
               })
+              console.log(data)
             let prices = await models.price.bulkCreate(data)
             
 
@@ -24,6 +25,7 @@ const csvReader = async (payloadData) => {
 
         
     } catch (error) {
+        console.log(error)
         return { error };
 
     }

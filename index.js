@@ -27,15 +27,20 @@ app.use(function (req, res, next) {
 // import all routes
 const Routes = require('./routes');
 const models = require('./models');
+const { reformateData } = require('./controllers/price');
 app.use(Routes)
 
 wss.on('connection', async  (ws) => {
   console.log('client connected');
 
   setInterval(async() => {
-    const csvData = await models.price.findAll({});
-    ws.send(JSON.stringify(csvData));
-  }, 1000);
+    const csvData = await models.price.findAll({
+      attributes : ['group','var','value']
+    });
+    let newData = await reformateData(csvData)
+    ws.send(JSON.stringify(newData));
+
+  }, 10000);
 })
 
 app.listen(5003, function() {
